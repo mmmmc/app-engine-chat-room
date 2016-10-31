@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <style>
   * {
-    background-color: green;
     margin:0;
     border: none;
     outline: none;
@@ -32,7 +31,7 @@
 
 <div id="chat">
   <div id="messages"></div>
-  <button type="button" >Submit</button>
+  <button id="button" >Submit</button>
   <input disabled placeholder="Connecting..." id="newmessage"></input>
 </div>
 
@@ -76,7 +75,10 @@ newmessage.on('keypress', function(e) {
     newmessage.val('');
   };
 });
-function.click(button)
+$("#button").click(function(){
+  $.post('/send', {data: newmessage.val()});
+  newmessage.val('');
+});
 // Force all focus to the input box.
 newmessage.on('blur', function(e) {
   newmessage.focus();
